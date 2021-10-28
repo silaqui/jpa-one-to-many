@@ -9,8 +9,9 @@ data class Parent(
     @GeneratedValue
     var id: UUID? = null,
     var name: String,
-    @OneToMany(mappedBy = "parent",cascade = [CascadeType.ALL])
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "parent_id")
     var children: List<Child> = listOf(),
-    ) {
+) {
     override fun toString() = "{name: ${this.name}, children: ${children.map { it.name }}}"
 }

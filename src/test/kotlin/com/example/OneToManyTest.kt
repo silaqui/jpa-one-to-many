@@ -60,5 +60,11 @@ class OneToManyTest(
 
         assertNotNull(actual.parent)
     }
+
+    @Test
+    fun read() {
+        for (p in parentRepository.findAll()) println(p)
+        for (c in childRepository.findAll()) println(c)
+    }
 }
 
