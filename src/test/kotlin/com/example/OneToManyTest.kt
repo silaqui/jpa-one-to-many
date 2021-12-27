@@ -31,30 +31,30 @@ class OneToManyTest(
         parentRepository.deleteAll()
     }
 
-    @Test //THIS TEST FAILS
+    @Test
     fun `Parent should have child when saved by parent`() {
         val actual = parentRepository.findAll().toList().filter { it.name == "Parent 1" }[0]
 
         assertEquals(2, actual.children.size)
     }
 
-    @Test //THIS TEST FAILS
+    @Test
     fun `Child should have parent when saved by parent`() {
         val actual = childRepository.findAll().toList().filter { it.name != "Child C" }
 
-        assertEquals(2, actual.size) // This assert is ok
+        assertEquals(2, actual.size)
         assertNotNull(actual[0].parent)
         assertNotNull(actual[1].parent)
     }
 
-    @Test //THIS TEST IS FINE
+    @Test
     fun `Parent should have child when saved by child`() {
         val actual = parentRepository.findAll().toList().filter { it.name == "Parent 2" }[0]
 
         assertEquals(1, actual.children.size)
     }
 
-    @Test //THIS TEST IS FINE
+    @Test
     fun `Child should have parent when saved by child`() {
         val actual = childRepository.findAll().toList().filter { it.name == "Child C" }[0]
 
